@@ -32,31 +32,28 @@
         <li>Put something common nearby for size.</li>
         <li>Shoot against a clear backdrop.</li>
         <li>Include pictures of different choices.</li>
+        <li>Less than 8 picture.</li>
       </ul>
     </div>
     <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}<div class="overlap-group">
-        <!-- Add an ID to the rectangle for JavaScript targeting -->
-        <div class="rectangle" id="upload-trigger">
-          <label for="image-upload" class="text-wrapper-5">Add a photo</label>
-          <!-- Move the file input outside of the rectangle -->
-          <input type="file" id="image-upload" name="images" accept="image/*" style="display: none;" multiple>
-          <div class="text-wrapper-6">+</div>
-        </div>
-        <!-- Image preview container -->
-        <div class="image-preview-container">
-    {% for uploaded_image in uploaded_images %}
-    <img src="{{ uploaded_image.image.url }}" alt="Uploaded Image">
-    {% endfor %}
-        </div>
+      {% csrf_token %}
+      <div class="overlap-group">
+          <!-- Add an ID to the rectangle for JavaScript targeting -->
+          <div class="rectangle" id="upload-trigger">
+              <label for="image-upload" class="text-wrapper-5">Add a photo</label>
+              <!-- Move the file input outside of the rectangle -->
+              <input type="file" id="image-upload" name="images" accept="image/*" style="display: none;" multiple>
+              <div class="text-wrapper-6">+</div>
+          </div>
       </div>
       <button type="submit" class="btn">Upload</button>
-    </form>
-    
+  </form>
+  
   <div class="button-line">
     <a href="{% url 'second_step' %}" ><button class="back btn"> ← BACK</button></a>
-    <a href="{% url 'fourth_step' %}" ><button class="btn">NEXT → </button></a>
-  </div><script>
+    <a href="{% url 'fourth_step'  product_id=product_id %}" ><button class="btn">NEXT → </button></a>
+  </div>
+  <script>
     // Get a reference to the file input element
     const fileInput = document.getElementById('image-upload');
     
@@ -68,6 +65,6 @@
       // Trigger a click on the file input
       fileInput.click();
     });
-  </script>
- 
+  </script> 
+  //view image after close file explorerin this site?
 {% endblock %}
